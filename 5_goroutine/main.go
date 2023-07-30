@@ -67,7 +67,7 @@ package main
 // 	go goroutine1(s, c)
 // 	go goroutine2(s, c)
 // 	//chennelを受け取る
-// 	//cが入って車でプログラムはずっとここで待っている
+// 	//cが入ってくるまでプログラムはずっとここで待っている
 // 	x := <-c
 // 	fmt.Println(x)
 // 	y := <-c
@@ -191,7 +191,7 @@ package main
 // 	}
 // }
 
-//7 select channel
+// 7 select channel
 
 // import (
 // 	"fmt"
@@ -239,22 +239,23 @@ package main
 // func main() {
 // 	tick := time.Tick(100 * time.Millisecond)
 // 	boom := time.After(500 * time.Millisecond)
-// 	OuterLoop:
-// 			for {
-// 				select {
-// 				case <- tick:
-// 					fmt.Println("tick.")
-// 				case <- boom:
-// 					fmt.Println("BOOM!")
-// 					break OuterLoop
-// 					// break⇒通常のbreakだとselect文を出るだけになってしまう
-// 				//上記のcase以外のものがかえってくるとdefaultを返す
-// 				default:
-// 					fmt.Println("   .")
-// 					time.Sleep(50 * time.Millisecond)
-// 				}
-// 			}
-// 		fmt.Println("########")
+// OuterLoop:
+// 	for {
+// 		select {
+// 			//case t := <-tickだが、必要なければt := は省略できる
+// 		case <-tick:
+// 			fmt.Println("tick.")
+// 		case <-boom:
+// 			fmt.Println("BOOM!")
+// 			break OuterLoop
+// 			// break⇒通常のbreakだとselect文を出るだけになってしまう
+// 		//上記のcase以外のものがかえってくるとdefaultを返す
+// 		default:
+// 			fmt.Println("    .")
+// 			time.Sleep(50 * time.Millisecond)
+// 		}
+// 	}
+// 	fmt.Println("########")
 // }
 
 //9 sync.Mutex

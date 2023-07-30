@@ -103,7 +103,7 @@ package main
 // 	"time"
 // )
 
-// //context.Context⇒contextの型定義
+// //context.Context⇒contextの型定義（これをすることによってcontextを使っていることを明示的に関数に示す）
 // func longProcess (ctx context.Context, ch chan string) {
 // 	fmt.Println("run")
 // 	time.Sleep(2 * time.Second)
