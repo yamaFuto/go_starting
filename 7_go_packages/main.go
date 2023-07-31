@@ -16,32 +16,37 @@ package main
 
 // //2 regexp(正規表現)
 
-// import (
-// 	"fmt"
-// 	"regexp"
-// )
+import (
+	"fmt"
+	"regexp"
+)
 
-// func main() {
-// 	match, _ := regexp.MatchString("a([a-z]+)e", "apple")
-// 	fmt.Println(match)
+func main() {
+	//第一引数に正規表現、第二引数に対象となる文字列を書き、その正規表現にマッチしているのか判定する
+	match, _ := regexp.MatchString("a([a-z]+)e", "apple")
+	fmt.Println(match)
 
-// 	//正規表現判定の構造体化
-// 	r := regexp.MustCompile("a([a-z]+)e")
-// 	ms := r.MatchString("apple")
-// 	fmt.Println(ms)
+	//正規表現(判定)の関数化(最適化)
+	r := regexp.MustCompile("a([a-z]+)e")
+	ms := r.MatchString("apple")
+	fmt.Println(ms)
 
-// 	// s := "/views/test"
-// 	r2 := regexp.MustCompile("^/(edit|save|view)/([a-zA-Z0-9]+)$")
-// 	fs := r2.FindString("/view/test")
-// 	fmt.Println(fs)
+	// s := "/views/test"
+	r2 := regexp.MustCompile("^/(edit|save|view)/([a-zA-Z0-9]+)$")
+	//第一引数に引っかかった文字列全部を持ってきてくれる
+	fs := r2.FindString("/view/test")
+	fmt.Println(fs)
 
-// 	fss := r2.FindStringSubmatch("/view/test")
-// 	fmt.Println(fss, fss[0], fss[1], fss[2])
-// 	fss = r2.FindStringSubmatch("/edit/test")
-// 	fmt.Println(fss, fss[0], fss[1], fss[2])
-// 	fss = r2.FindStringSubmatch("/save/test")
-// 	fmt.Println(fss, fss[0], fss[1], fss[2])
-// }
+	//引っかかった部分の中でも一部を取り出したいときに使う
+	// /で分かれたパターンでスライスに格納される
+	//URLの状況によって処理を変えたいときなどに使う
+	fss := r2.FindStringSubmatch("/view/test")
+	fmt.Println(fss, fss[0], fss[1], fss[2])
+	fss = r2.FindStringSubmatch("/edit/test")
+	fmt.Println(fss, fss[0], fss[1], fss[2])
+	fss = r2.FindStringSubmatch("/save/test")
+	fmt.Println(fss, fss[0], fss[1], fss[2])
+}
 
 // //3 sort
 
