@@ -64,7 +64,7 @@ package main
 //     fmt.Printf("%T\n", xf64);
 // }
 
-//3 const
+//4 const
 // import "fmt"
 
 // const Pi = 3.14
@@ -78,7 +78,7 @@ package main
 //     fmt.Println(Pi, Username, Password)
 // }
 
-//4　数値
+//5　数値
 // import "fmt";
 
 // func main() {
@@ -99,7 +99,7 @@ package main
 //     fmt.Println("1 + 1 =", 1+1)
 // }
 
-//5　文字列
+//6　文字列
 // import (
 //     "fmt"
 //     "strings"
@@ -126,7 +126,7 @@ package main
 //     fmt.Println(`"`)
 // }
 
-//6　bool
+//7　bool
 
 // import "fmt"
 
@@ -141,7 +141,7 @@ package main
 //     fmt.Println(!true)
 // }
 
-//7　型変換
+//8　型変換
 
 // import (
 // 	"fmt"
@@ -168,7 +168,7 @@ package main
 //     fmt.Println(string(h[0]))
 // }
 
-//8　配列
+//9　配列
 
 // import "fmt"
 
@@ -188,7 +188,7 @@ package main
 // 	fmt.Println(b);
 // }
 
-//9　スライス
+//10　スライス
 
 // import "fmt"
 
@@ -215,7 +215,7 @@ package main
 // 	fmt.Println(n)
 // }
 
-//10 make cap
+//11 make cap
 
 // import "fmt"
 
@@ -250,7 +250,7 @@ package main
 
 // }
 
-//11 map
+//12 map
 
 // import "fmt"
 
@@ -292,7 +292,7 @@ package main
 // 	// }
 // }
 
-//12 byte
+//13 byte
 
 // import "fmt"
 
@@ -310,14 +310,16 @@ package main
 // 	fmt.Println(string(c))
 // }
 
-//13 関数
+//14 関数
 
 // import "fmt"
 
+// 返り値が二つ以上あるときにはカンマで区切る
 // func add(x, y int) (int, int) {
 // 	return x + y, x - y
 // }
 
+//返り値に名前をしあ所につけていればreturnが空でも自動的にその名前の値を返す
 // func cal(price, item int) (result int) {
 // 	result = price * item
 // 	return
@@ -340,12 +342,13 @@ package main
 // 	}
 // 	f(1)
 
+//関数定義に()をつけるとその関数が発火される
 // 	func(x int) {
 // 		fmt.Println("inner func", x)
 // 	}(1)
 // }
 
-// 14 クロージャ
+// 15 クロージャ
 
 // import "fmt"
 
@@ -380,7 +383,7 @@ package main
 // 	fmt.Println(c2(3))
 // }
 
-//15　可変長引数
+//16　可変長引数
 
 // import "fmt"
 

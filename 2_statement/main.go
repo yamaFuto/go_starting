@@ -262,6 +262,7 @@ package main
 // 		s := recover()
 // 		fmt.Println(s)
 // 		}()
+//		//これをdeferの上に書くとdefer関数が読み込まれる前に強制終了されてしまう
 // 		thirdPartyConnectDB()
 // }
 

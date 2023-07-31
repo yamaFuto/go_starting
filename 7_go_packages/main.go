@@ -1,6 +1,6 @@
 package main
 
-// //time
+// //1 time
 // import (
 // 	"fmt"
 // 	"time"
@@ -14,7 +14,7 @@ package main
 // 	fmt.Println(t.Year(), t.Month(), t.Day(), t.Hour())
 // }
 
-// //regexp(正規表現)
+// //2 regexp(正規表現)
 
 // import (
 // 	"fmt"
@@ -43,7 +43,7 @@ package main
 // 	fmt.Println(fss, fss[0], fss[1], fss[2])
 // }
 
-//sort
+// //3 sort
 
 // import (
 // 	"fmt"
@@ -70,7 +70,7 @@ package main
 // 	fmt.Println(i, s, p)
 // }
 
-//iota
+// //4 iota
 
 // import "fmt"
 
@@ -94,7 +94,7 @@ package main
 // 	fmt.Println(KB, MB, GB)
 // }
 
-//context
+// //5 context
 //go routine1をキャンセル、タイムアウトするときに使う
 
 // import (
@@ -143,7 +143,7 @@ package main
 // 	fmt.Println("###########")
 // }
 
-//ioutil
+// //6 ioutil
 //ioに特化している（ネットワーク関係）
 
 // import (

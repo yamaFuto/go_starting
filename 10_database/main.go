@@ -33,14 +33,14 @@ func main() {
 	// //追加
 	// //valueに関しては?が使える
 	// cmd = "INSERT INTO person (name, age) VALUES (?,?)"
-	// _, err = DbConnection.Exec(cmd, "Futo", 20)
+	// _, err = DbConnection.Exec(cmd, "Nancy", 20)
 	// if err != nil {
 	// 	log.Fatalln(err)
 	// }
 
 	// //更新
 	// cmd = "UPDATE person SET age = ? WHERE name = ?"
-	// _, err = DbConnection.Exec(cmd, 50, "Mike")
+	// _, err = DbConnection.Exec(cmd, 15, "Mike")
 	// if err != nil {
 	// 	log.Fatalln(err)
 	// }
