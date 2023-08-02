@@ -25,6 +25,7 @@ func main() {
 		name STRING,
 		age INT
 	)`
+	//コマンドを起動
 	_, err := DbConnection.Exec(cmd)
 	if err != nil {
 		log.Fatalln(err)
@@ -45,31 +46,31 @@ func main() {
 	// 	log.Fatalln(err)
 	// }
 
-	// //マルチ取り出す
-	// cmd = "SELECT * FROM person"
-	// 	// 返り値があるためQueryを使う
-	// rows, _ := DbConnection.Query(cmd)
-	// //次のレコードを持ってくるために閉じる
-	// defer rows.Close()
-	// var pp []Person
-	// 	//rowsに格納されたものをNext()で回す
-	// for rows.Next() {
-	// 	var p Person
-	// 	//pに格納
-	// 	err := rows.Scan(&p.Name, &p.Age)
-	// 	if err != nil {
-	// 		log.Println(err)
-	// 	}
-	// 	pp = append(pp, p)
-	// }
-	// //errorをまとめて集めている
-	// err = rows.Err()
-	// if err != nil {
-	// 	log.Fatalln(err)
-	// }
-	// for _, p := range pp {
-	// 	fmt.Println(p.Name, p.Age)
-	// }
+	//マルチ取り出す
+	cmd = "SELECT * FROM person"
+		// 返り値があるためQueryを使う
+	rows, _ := DbConnection.Query(cmd)
+	//次のレコードを持ってくるために閉じる
+	defer rows.Close()
+	var pp []Person
+		//rowsに格納されたものをNext()で回す
+	for rows.Next() {
+		var p Person
+		//pに格納
+		err := rows.Scan(&p.Name, &p.Age)
+		if err != nil {
+			log.Println(err)
+		}
+		pp = append(pp, p)
+	}
+	//errorをまとめて集めている
+	err = rows.Err()
+	if err != nil {
+		log.Fatalln(err)
+	}
+	for _, p := range pp {
+		fmt.Println(p.Name, p.Age)
+	}
 
 	// //シングル取り出し
 	// cmd = "SELECT * FROM person where age = ?"
