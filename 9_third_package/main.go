@@ -1,6 +1,6 @@
 package main
 
-//1 samephore
+//1 semaphore
 //稼働しているgoroutineの数を限定する
 //稼働しているgoroutine以外を中断させることができる
 
@@ -16,13 +16,14 @@ package main
 // var s *semaphore.Weighted = semaphore.NewWeighted(1)
 
 // func longProcess(ctx context.Context) {
-// 	//Acquireでロックしている（ロック差sれ禎太らfalseを返す
+// 	//Acquireでロックしている（ロックされたらfalseを返す
+// 	//一つ分確保しようとする
 // 	isAcquire := s.TryAcquire(1)
 // 	if !isAcquire {
 // 		fmt.Println("Could not get lock")
 // 		return
 // 	}
-// 	// //s.Aquireでロックしている
+// 	// //s.Aquireでロックしている(lockされていた場合にはcontextで大気処理をする)
 // 	// if err := s.Acquire(ctx, 1); err != nil{
 // 	// 	fmt.Println(err)
 // 	// 	return

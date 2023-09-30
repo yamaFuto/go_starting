@@ -194,9 +194,10 @@ package main
 
 // //logをファイルに書き込む
 // func LoggingSettings(logFile string) {
-// 	//ファイルをオープン　なければ作成
+// 	//ファイルをオープン　なければ作成,第二引数でOpen方法を記述
 // 	logfile, _ := os.OpenFile(logFile, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
 // 	//画面上に出るエラーを出力する、ログファイルに書き込む
+// 	//出力先を決めている
 // 	multiLogFile := io.MultiWriter(os.Stdout, logfile)
 // 	log.SetFlags(log.Ldate | log.Ltime | log.Lshortfile)
 // 	//実行
@@ -234,7 +235,7 @@ package main
 // 	defer file.Close()
 // 	data := make([]byte, 100)
 
-// 	//一つでも初期化できていると使える　errは上書きされている
+// 	//一つでも初期化できていると使える errは上書きされている
 // 	count, err := file.Read(data)
 // 	if err != nil{
 // 		log.Fatalln("Error")

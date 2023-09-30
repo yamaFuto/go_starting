@@ -10,7 +10,7 @@ import (
 var Debug bool = true
 
 // //6 godocの説明
-// //godoでPackageのExampleとして表示
+// //godoでPackageのExampleとして表示(ExampleはTestに書く)
 // func Example() {
 // 	v := Average([]int{1, 2, 3, 4, 5})
 // 	fmt.Println(v)
@@ -28,7 +28,7 @@ var Debug bool = true
 // 	fmt.Println(v)
 // }
 
-//testはtest対象の隣にファイルを置く
+//3 test testはtest対象の隣にファイルを置く
 //go test ./...でtest実行
 func TestAverage(t *testing.T) {
 	if Debug {

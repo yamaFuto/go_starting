@@ -139,16 +139,17 @@ package main
 // func main() {
 // 	var wg sync.WaitGroup
 // 	ch := make(chan int)
-
+	
 // 	for i := 0; i < 10; i++ {
 // 		wg.Add(1)
 // 		go producer(ch, i)
 // 	}
-
+	
 // 	go consumer(ch, &wg)
+	
 // 	wg.Wait()
 
-// 	//並列で動いているconsumerをていしさせるためのclose()
+// 	//並列で動いているconsumerを停止させるためのclose()
 // 	close(ch)
 // }
 

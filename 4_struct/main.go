@@ -53,6 +53,7 @@ package main
 // }
 
 // //メンバが小文字だと外から直接呼び出せないため関数を問うして代入構築を行う
+// //返り値がポインタ型の理由→返り値はポインタ型でないとコピーされてしまうためメモリ効率が悪い
 // func New(x, y int) *Vertex{
 // 	return &Vertex{x, y}
 // }
@@ -132,9 +133,15 @@ package main
 
 //5 interface
 
-// import "fmt"
+// import (
+// 	"fmt"
+// )
 
 // type Human interface {
+// 	Say() string
+// }
+
+// type A interface {
 // 	Say() string
 // }
 
@@ -146,14 +153,19 @@ package main
 // 	Name string
 // }
 
-// //実装した中身を操作するので*が必要
+// type Futo struct {
+	
+// 	Person
+// }
+
+// // 実装した中身を操作するので*が必要
 // func (p *Person) Say() string {
 // 	p.Name = "Mr." + p.Name
 // 	fmt.Println(p.Name)
 // 	return p.Name
 // }
 
-// //interfaceのだっぐタイピング⇒その関数を持っていないstructは受け付けない
+// // interfaceのだっぐタイピング⇒その関数を持っていないstructは受け付けない
 // func DriveCar(human Human) {
 // 	if human.Say() == "Mr.Mike" {
 // 		fmt.Println("Run")
@@ -164,9 +176,14 @@ package main
 
 // func main() {
 // 	//interfaceの中にstructを入れたらinterfaceの関数を持たなくてはいけない interface以外の関数は除外される
-//	// ストラクトのメソッドと違ってポインタ変換されないために初期化するときに&が必要になる
+// 	// ストラクトのメソッドと違ってポインタ変換されないために初期化するときに&が必要になる
 // 	var mike Human = &Person{"Mike"}
 // 	var x Human = &Person{"x"}
+
+// 	// z.Say()→z.Personの中のSayを使うことができる
+// 	// structの中に入っているstructやinterfaceのメンバーはその親のstructの中で広げられた状態で呼ぶことができる(継承)
+// 	z := &Futo{}
+// 	fmt.Println(z.Say(), 1)
 
 // 	// var dog Dog = Dog{"dog"}
 // 	DriveCar(mike)
@@ -223,7 +240,7 @@ package main
 
 // //stringerはstruct表示方法を変更する特別な関数
 // func (p Person) String() string {
-// 	//printfは引数をstring型で返す
+// 	//Sprintfは引数をstring型で返す
 // 	return fmt.Sprintf("My name is %v", p.Name)
 // }
 

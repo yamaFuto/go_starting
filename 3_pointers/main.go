@@ -25,7 +25,6 @@ package main
 // 	fmt.Println(*p)
 // }
 
-
 //2 new make
 
 // import "fmt"
@@ -65,67 +64,75 @@ package main
 
 //3 struct
 
-// import "fmt"
+import "fmt"
 
-// type Vertex struct {
-// 	//小文字だとプライベートな変数になってしまってパッケーの外から呼び出せなくなってしまう
-// 	X, Y int
-// 	S string
-// }
+type Vertex struct {
+	//小文字だとプライベートな変数になってしまってパッケーの外から呼び出せなくなってしまう
+	X, Y int
+	S    string
+}
+type Test struct {
+	X, Y int
+	S    *Vertex
+}
 
-// func changeVertex(v Vertex) {
-// 	v.X = 1000
-// }
+func changeVertex(v Vertex) {
+	v.X = 1000
+}
 
-// //*がついているとstructと理解して参照先に置き換えてくれる
-// func changeVertex2(v *Vertex) {
-// 	v.X = 1000
-// }
+//*がついているとstructと理解して参照先に置き換えてくれる
+func changeVertex2(v *Vertex) {
+	v.X = 1000
+}
 
-// func main() {
-// 	v := Vertex{1, 2, "test"}
-// 	fmt.Printf("%T\n %v\n", v, v)
-// 	changeVertex(v)
-// 	fmt.Println(v)
+func main() {
+	v := Vertex{1, 2, "test"}
+	fmt.Printf("%T\n %v\n", v, v)
+	changeVertex(v)
+	fmt.Println(v)
 
-// 	v2 := &Vertex{1, 2, "test"}
-// 	changeVertex2(v2)
-// 	fmt.Println(v2)
+	v2 := &Vertex{1, 2, "test"}
+	changeVertex2(v2)
+	fmt.Println(v2)
 
-// 	// v := Vertex{X: 1, Y:2}
-// 	// fmt.Println(v)
-// 	// fmt.Println(v.X, v.Y)
-// 	// v.X = 100
-// 	// fmt.Println(v.X, v.Y)
+	v3 := Test{1, 2, &Vertex{3, 4, "String"}}
+	//structの中のstructはポインタ型だとアドレスを返す
+	fmt.Println(v3.S.X)
 
-// 	// //{1 0 }
-// 	// v2 := Vertex{X: 1}
-// 	// fmt.Println(v2)
+	// v := Vertex{X: 1, Y:2}
+	// fmt.Println(v)
+	// fmt.Println(v.X, v.Y)
+	// v.X = 100
+	// fmt.Println(v.X, v.Y)
 
-// 	// //{1 2 "test"}
-// 	// v3 := Vertex{1, 2, "test"}
-// 	// fmt.Println(v3)
+	// //{1 0 }
+	// v2 := Vertex{X: 1}
+	// fmt.Println(v2)
 
-// 	// //main.Vertex {0 0 }
-// 	// v4 := Vertex{}
-// 	// fmt.Printf("%T %v\n", v4, v4)
+	// //{1 2 "test"}
+	// v3 := Vertex{1, 2, "test"}
+	// fmt.Println(v3)
 
-// 	// 	//main.Vertex {0 0 }
-// 	// 普通の型と違ってnilにならない
-// 	// var v5 Vertex
-// 	// fmt.Printf("%T %v\n", v5, v5)
+	// //main.Vertex {0 0 }
+	// v4 := Vertex{}
+	// fmt.Printf("%T %v\n", v4, v4)
 
-//  //  struct型はポインタでも初期値はアドレスではなく値を返す
-// 	// 	//*main.Vertex {0 0 }
-// 	// v6 := new(Vertex)
-// 	// fmt.Printf("%T %v\n", v6, v6)
+	// 	//main.Vertex {0 0 }
+	// 普通の型と違ってnilにならない
+	// var v5 Vertex
+	// fmt.Printf("%T %v\n", v5, v5)
 
-// 	// //*main.Vertex {0 0 }
-// 	// v7 := &Vertex{}
-// 	// fmt.Printf("%T %v\n", v7, v7)
+	//  struct型はポインタでも初期値はアドレスではなく値を返す
+	// 	//*main.Vertex {0 0 }
+	// v6 := new(Vertex)
+	// fmt.Printf("%T %v\n", v6, v6)
 
-// 	//推奨
-// 	// s := make([]int, 0)
+	// //*main.Vertex {0 0 }
+	// v7 := &Vertex{}
+	// fmt.Printf("%T %v\n", v7, v7)
 
-// 	// s := []int{}
-// }
+	//推奨
+	// s := make([]int, 0)
+
+	// s := []int{}
+}

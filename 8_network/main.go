@@ -26,11 +26,12 @@ package main
 // 	fmt.Println(endpoint)
 // 	fmt.Println(base, err)
 
-// 	//get
+// 	//get,リクエスト作成
 // 	req, _ := http.NewRequest("GET", endpoint, nil)
 
 // 	// //post
-// 	// //postはqueryをurlで見られないように第三引数に置く
+// 	// //postはqueryをurlで見られないように第三引数(body)に置く
+// 	// //NewBufferは抽象的化した読み書き用のメソッドをそろえたメモリ領域
 // 	// req, _ := http.NewRequest("POST", endpoint, bytes.NewBuffer([]byete("password")))
 
 // 	req.Header.Add("IF-None-Match", `W/"wizzy"`)
@@ -61,7 +62,7 @@ package main
 // type T struct{}
 
 // type Person struct {
-// 	//json化するときの規則を定義する
+// 	//json化(Marshal)するときの規則を定義する
 // 	//json:"age,string"⇒string化
 // 	//json: "_"⇒非表示
 // 	//json:"age,omitempty⇒０、空の時は見せない
@@ -75,8 +76,9 @@ package main
 
 // //独自のmarshalを生成
 // //MarshalJSONにしなくてはいけない
-// //json.Marshalが呼ばれると自動的に呼ばれる
+// //json.Marshalが呼ばれると自動的に呼ばれる(引数のstructと紐づけることによって、引数のstructによってそれぞれ違うmarshalを作ることができる)
 // func (p Person) MarshalJSON() ([]byte, error) {
+// 		// ストラクトを初期化している
 // 	v, err := json.Marshal(&struct{
 // 		Name string
 // 	}{
@@ -85,6 +87,8 @@ package main
 // 	return v, err
 // }
 
+// //marshal(unmarshal)されたら、まず、その関数がmarshal(unmarshal)JSONを引数のstructが保持していないか探し、あったらそれを実行する
+// //第二引数のstructと連動させることによって、それぞれのsrructが第二引数で呼ばれたときに呼ばれる
 // //書き換えが必要なためポインタを渡している
 // func (p *Person) UnmarshalJSON(b []byte) error {
 // 	type Person2 struct{
@@ -103,14 +107,14 @@ package main
 // 	b := []byte(`{"name":"mike", "age":20, "nicknames":["a", "b", "c"]}`)
 // 	var p Person
 
-// 	//ネットワークから帰ってきたものをケーを見て入れてくれる
+// 	//ネットワークから帰ってきたバイト配列をストラクトにjsonとbyteを変換して第二引数のストラクトに合うように値を格納している
 // 	if err := json.Unmarshal(b, &p); err != nil{
 // 		fmt.Println(err)
 // 	}
 // 	fmt.Println(p.Name,p.Age, p.Nicknames)
 
-// 	//byte[]jsonに変換
-// 	v, _ := json.Marshal(p)
+// 	//byte[]jsonに変換⇒byte型で返ってくる
+// 	v, _ := json.Marshal(&p)
 // 	fmt.Println(string(v))
 // }
 
@@ -142,7 +146,7 @@ package main
 // 	const apiKey = "User1Key"
 // 	const apiSecret = "User1Secret"
 
-// 	//sha256暗号アルゴリズムをもとにapiKey1を八種地に変換している
+// 	//sha256暗号アルゴリズムをもとにapiKey1をハッシュキー(バイトの配列のちにstring型にしてhashに直す)に変換している
 // 	data := []byte("data")
 // 	h := hmac.New(sha256.New, []byte(apiSecret))
 // 	//dataを書き込む

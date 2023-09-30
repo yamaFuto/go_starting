@@ -2,7 +2,7 @@ package main
 
 //1.hello world
 // import "fmt"
-//init ⇒　main ⇒　その他の関数の順に呼ばれる
+// // init ⇒　main ⇒　その他の関数の順に呼ばれる
 // func init() {
 //     fmt.Println("init");
 // }
@@ -12,16 +12,16 @@ package main
 // }
 
 // func main() {
-//     // name := "Go Developers"
-//     // fmt.Println("Azure for", name)
-//     // fmt.Println("a");
-//     // bazz();
+//     name := "Go Developers"
+//     fmt.Println("Azure for", name)
+//     fmt.Println("a");
+//     bazz();
 
 // }
 
 //2.import
-//複数のimport を一行で書ける
-//os/user⇒osというパッケージの中のuserというライブラリ
+// // 複数のimport を一行で書ける
+// // os/user⇒osというパッケージの中のuserというライブラリ
 // import (
 //     "fmt"
 //     "os/user"
@@ -235,14 +235,14 @@ package main
 // 	//配列を０で初期化する方法
 // 	b := make([]int, 0)
 
-// varの場合には初期化される際に値を書かなかったらメモリを保存してくれない
+// // varの場合には初期化される際に値を書かなかったらメモリを保存してくれない
 // 	var c []int
 // 		fmt.Printf("len=%d cap=%d value=%v\n", len(b), cap(b), b)
 // 		fmt.Printf("len=%d cap=%d value=%v\n", len(c), cap(c), c)
 
 // 		// c = make([]int, 5)
 // 		c = make([]int, 0, 5)
-// 		for i := 0; i < 5; i++ {
+// 		for i := 0; i < 4; i++ {
 // 			c = append(c, i)
 // 			fmt.Println(c)
 // 		}
@@ -286,10 +286,11 @@ package main
 // 	// fmt.Println(m3)
 
 // 	// //sliceの時も同様
-// 	// var s []int 
-// 	// if s == nil {
-// 	// 	fmt.Println("Nil")
-// 	// }
+// 	var s []int
+// 	if s == nil {
+// 		fmt.Println("Nil")
+// 		fmt.Println(append(s, 1))
+// 	}
 // }
 
 //13 byte

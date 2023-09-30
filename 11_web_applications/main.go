@@ -126,8 +126,9 @@ package main
 // 	return &Page{Title: title, Body: body}, nil
 // }
 
+//	//template化して別ファイルに書いたものを利用する
 // func renderTemplate(w http.ResponseWriter, tmpl string, p *Page) {
-// 	//templateを検索
+// 	//templateを検索 読み込んでいる
 // 	t , _ := template.ParseFiles(tmpl + ".html")
 // 	//作成したtemplateを使ってwにpを書き込む
 // 	t.Execute(w, p)
@@ -207,7 +208,8 @@ func loadPage(title string) (*Page, error) {
 	return &Page{Title: title, Body: body}, nil
 }
 
-//事前に複数のfileを読み込んでそのその結果を関数の中で利用する
+//事前に複数のfileを読み込んでその結果を関数の中で利用する
+//parseFiles→ファイルを読み込む関数
 var templates = template.Must(template.ParseFiles("edit.html", "view.html"))
 
 func renderTemplate(w http.ResponseWriter, tmpl string, p *Page) {
@@ -249,6 +251,7 @@ func saveHandler(w http.ResponseWriter, r *http.Request, title string) {
 	p := &Page{Title:title, Body: []byte(body)}
 	err := p.save()
 	if err != nil {
+		//http.StatusInternalServerError⇒statusコードを同封して返す
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
@@ -276,5 +279,6 @@ func main() {
 	http.HandleFunc("/view/", makeHandler(viewHandler))
 	http.HandleFunc("/edit/", makeHandler(editHandler))
 	http.HandleFunc("/save/", makeHandler(saveHandler))
+	//ListenAndServe→さーばーのlisten、serveを担当する窓口を設置する。もしserverが立っていないときにはsevrverを立てる役割もある
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }

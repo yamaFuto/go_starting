@@ -56,7 +56,7 @@ func main() {
 		//rowsに格納されたものをNext()で回す
 	for rows.Next() {
 		var p Person
-		//pに格納
+		//検出結果から一つだけ取り出し、pに格納
 		err := rows.Scan(&p.Name, &p.Age)
 		if err != nil {
 			log.Println(err)
